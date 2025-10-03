@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SUPERCELL'S LANDING PAGE - Home</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --supercell-gold: #c89b3c;
+        --supercell-dark: #1e2328;
+        --supercell-blue: #0f2027;
+      }
+
+      body {
+        font-family: 'Open Sans', sans-serif;
+        background: var(--supercell-dark);
+        color: white;
+      }
+
+      .navbar {
+        background: rgba(30, 35, 40, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 2px solid var(--supercell-gold);
+      }
+
+      .navbar-brand {
+        font-family: 'Alfa Slab One', cursive;
+        color: var(--supercell-gold) !important;
+        font-size: 1.5rem;
+      }
+
+      .nav-link {
+        color: white !important;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .nav-link:hover {
+        color: var(--supercell-gold) !important;
+      }
+
+      .btn-supercell {
+        background: linear-gradient(135deg, var(--supercell-gold), #f0c040);
+        border: none;
+        color: #000;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .btn-supercell:hover {
+        background: linear-gradient(135deg, #f0c040, var(--supercell-gold));
+        color: #000;
+        transform: translateY(-2px);
+      }
+
+      .hero-section {
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+      }
+
+      .hero-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-title {
+        font-family: 'Alfa Slab One', cursive;
+        font-size: 4rem;
+        color: var(--supercell-gold);
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        margin-bottom: 1rem;
+      }
+
+      .section-title {
+        font-family: 'Alfa Slab One', cursive;
+        color: var(--supercell-gold);
+        text-align: center;
+        margin-bottom: 3rem;
+        font-size: 2.5rem;
+      }
+
+      .news-card {
+        background: rgba(255,255,255,0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+        transition: transform 0.3s ease;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(200, 155, 60, 0.3);
+      }
+
+      .news-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .news-image img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .news-image.small img {
+        height: 120px;
+      }
+
+      .scene-showcase {
+        height: 300px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 15px;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+      }
+
+      .scene-showcase:hover {
+        transform: scale(1.02);
+      }
+
+      .scene-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0,0,0,0.8));
+        padding: 2rem;
+        color: white;
+      }
+
+      .character-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .character-card {
+        background: rgba(255,255,255,0.1);
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(200, 155, 60, 0.3);
+      }
+
+      .character-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .character-image img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .footer {
+        background: var(--supercell-dark);
+        border-top: 2px solid var(--supercell-gold);
+        padding: 3rem 0 2rem;
+        margin-top: 3rem;
+      }
+
+      .youtube-modal {
+        background: rgba(0, 0, 0, 0.9);
+      }
+
+      .youtube-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .youtube-player {
+        width: 100%;
+        height: 450px;
+        border: none;
+        border-radius: 10px;
+      }
+
+      .close-youtube {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        background: var(--supercell-gold);
+        color: #000;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .close-youtube:hover {
+        background: #f0c040;
+        transform: scale(1.1);
+      }
+
+      .games-row {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .games-row-4 {
+        width: 300px;
+      }
+
+      /* Welcome Message Styling */
+      .welcome-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, var(--supercell-gold), #f0c040);
+        color: #000;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        box-shadow: 0 4px 8px rgba(200, 155, 60, 0.4);
+      }
+
+      .btn-logout {
+        background: linear-gradient(135deg, #dc3545, #c82333);
+        border: none;
+        color: white;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        padding: 8px 20px;
+      }
+
+      .btn-logout:hover {
+        background: linear-gradient(135deg, #c82333, #dc3545);
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.5rem;
+        }
+        
+        .youtube-player {
+          height: 250px;
+        }
+
+        .games-pyramid .games-row {
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+        }
+
+        .games-row-1,
+        .games-row-2,
+        .games-row-3,
+        .games-row-4 {
+          width: 100%;
+          max-width: 300px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#home">
+          <img
+            src="images/supercell_logo.png"
+            alt="Supercell"
+            height="30"
+            class="me-2"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">ABOUT US</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#games">GAMES</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#episodes">CLASH-A-RAMA!</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#characters">HEROES, TROOPS & MORE</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center">
+            <span id="welcomeMessage" class="welcome-badge me-3" style="display: none;"></span>
+            <button id="watchVideoBtn" class="btn btn-supercell me-3">
+              <i class="fas fa-play me-2"></i>Watch Video
+            </button>
+            <button id="authButton" class="btn btn-supercell" onclick="window.location.href='login.html';">
+              SIGN IN
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- YouTube Video Modal -->
+    <div class="modal fade youtube-modal" id="youtubeModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-transparent border-0">
+          <div class="youtube-container">
+            <button type="button" class="close-youtube" data-bs-dismiss="modal">
+              <i class="fas fa-times"></i>
+            </button>
+            <iframe 
+              id="youtubePlayer" 
+              class="youtube-player"
+              src="" 
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <video autoplay muted loop class="hero-video">
+        <source src="videos\coc.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <video autoplay muted loop class="hero-video" style="opacity: 0.3; z-index: 1;">
+        <source src="videos\coc.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <div class="container hero-content">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h1 class="hero-title">SUPERCELL</h1>
+            <p class="lead mb-4">
+              Makers of Clash of Clans, Boom Beach, Clash Royale, Hay Day, Brawl
+              Stars, Squad Busters and mo.co..
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Games Section -->
+    <section id="games" class="py-5">
+      <div class="container">
+        <h2 class="section-title">GAMES</h2>
+        <div class="games-pyramid">
+          <div class="games-row games-row-1">
+            <div class="news-card">
+              <div class="news-image">
+                <img src="images/clash_of_clans.png" alt="Clash of Clans" class="img-fluid" />
+              </div>
+              <div class="p-3">
+                <h5>Clash of Clans</h5>
+              </div>
+            </div>
+          </div>
+      
+          <div class="games-row games-row-2">
+            <div class="news-card" style="width: 300px;">
+              <div class="news-image">
+                <img src="images/clash_royale.png" alt="Clash Royale" class="img-fluid" />
+              </div>
+              <div class="p-3">
+                <h5>Clash Royale</h5>
+              </div>
+            </div>
+            <div class="news-card" style="width: 300px;">
+              <div class="news-image">
+                <img src="images/brawl_stars.png" alt="Brawl Stars" class="img-fluid" />
+              </div>
+              <div class="p-3">
+                <h5>Brawl Stars</h5>
+              </div>
+            </div>
+          </div>
+
+          <div class="games-row games-row-3">
+            <div class="news-card" style="width: 300px;">
+              <div class="news-image">
+                <img src="images/hay_day.png" alt="Hay Day" class="img-fluid" />
+              </div>
+              <div class="p-3">
+                <h5>Hay Day</h5>
+              </div>
+            </div>
+            <div class="news-card" style="width: 300px;">
+              <div class="news-image">
+                <img src="images/boom_beach.png" alt="Boom Beach" class="img-fluid" />
+              </div>
+              <div class="p-3">
+                <h5>Boom Beach</h5>
+              </div>
+            </div>
+            <div class="news-card" style="width: 300px;">
+              <div class="news-image">
+                <img src="images/squad_busters.png" alt="Squad Busters" class="img-fluid" />
+              </div>
+              <div class="p-3">
+                <h5>Squad Busters</h5>
+              </div>
+            </div>
+          </div>
+
+          <div class="games-row games-row-4">
+            <div class="news-card">
+              <div class="news-image">
+                <img src="images/moco.png" alt="mo.co" class="img-fluid" />
+              </div>
+              <div class="p-3">
+                <h5>mo.co</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Episodes Section -->
+    <section id="episodes" class="py-5">
+      <div class="container">
+        <h2 class="section-title">CLASH-A-RAMA!</h2>
+        <div class="row">
+          <div class="col-lg-4 mb-4">
+            <div class="scene-showcase" style="background-image: url('images/giant_problem.png');">
+              <div class="scene-content">
+                <h3>Giant vs. Giant Problem</h3>
+                <p>Giant has a huge problem, how is he going to solve it</p>
+                <button class="btn btn-supercell btn-sm mt-2" onclick="playEpisode('www.youtube.com/watch?v=-KOohzZfoss&list=PLGhzmQmduiLdZqEQ9KIdGnBt3auHIfGWf&index=1&pp=iAQB0gcJCckJAYcqIYzv')">
+                  <i class="fas fa-play me-1"></i>Watch Now
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 mb-4">
+            <div class="scene-showcase" style="background-image: url('images/ug.png');">
+              <div class="scene-content">
+                <h3>University of Goblin</h3>
+                <p>The Goblins have started class and they are getting straight Fs</p>
+                <button class="btn btn-supercell btn-sm mt-2" onclick="playEpisode('www.youtube.com/watch?v=pYl88Mw7GWE&list=PLGhzmQmduiLdZqEQ9KIdGnBt3auHIfGWf&index=2&pp=iAQB')">
+                  <i class="fas fa-play me-1"></i>Watch Now
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 mb-4">
+            <div class="scene-showcase" style="background-image: url('images/12_days.png');">
+              <div class="scene-content">
+                <h3>12 Days of Clashmas</h3>
+                <p>The Village is celebrating the annual festivities of Clashmas</p>
+                <button class="btn btn-supercell btn-sm mt-2" onclick="playEpisode('www.youtube.com/watch?v=aUnB5nzmmtc&list=PLGhzmQmduiLdZqEQ9KIdGnBt3auHIfGWf&index=4&pp=iAQB')">
+                  <i class="fas fa-play me-1"></i>Watch Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Characters Section -->
+    <section id="characters" class="py-5">
+      <div class="container">
+        <h2 class="section-title">HEROES, TROOPS & MORE</h2>
+        <div class="character-grid">
+          <div class="character-card">
+            <div class="character-image">
+              <img src="images/barb_king.png" alt="Barbarian King" class="img-fluid" />
+            </div>
+            <div class="p-3">
+              <h4>Barbarian King</h4>
+              <p>The Mighty Hero</p>
+            </div>
+          </div>
+          <div class="character-card">
+            <div class="character-image">
+              <img src="images/pekka.png" alt="P.E.K.K.A." class="img-fluid" />
+            </div>
+            <div class="p-3">
+              <h4>P.E.K.K.A.</h4>
+              <p>The Iron Warrior</p>
+            </div>
+          </div>
+          <div class="character-card">
+            <div class="character-image">
+              <img src="images/shelly.png" alt="Shelly" class="img-fluid" />
+            </div>
+            <div class="p-3">
+              <h4>Shelly</h4>
+              <p>The Shotgun Star</p>
+            </div>
+          </div>
+          <div class="character-card">
+            <div class="character-image">
+              <img src="images/valkyrie.png" alt="Valkyrie" class="img-fluid" />
+            </div>
+            <div class="p-3">
+              <h4>Valkyrie</h4>
+              <p>The Fierce Warrior</p>
+            </div>
+          </div>
+        </div>
+      

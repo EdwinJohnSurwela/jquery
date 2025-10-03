@@ -1,0 +1,212 @@
+body {
+    font-family: 'Supercell-Magic', 'Arial Black', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+body.register-page {
+    background: url("../images/register_bg.png") no-repeat center center/cover;
+}
+
+/* Default background for login page */
+body:not(.register-page) {
+    background: url("../images/login_bg.png") no-repeat center center/cover;
+}
+
+/* Form Container - Main container for both login.html and register.html */
+.form-container {
+    position: relative;
+    width: 350px;
+    padding: 30px 25px; /* Reduced top/bottom padding from 40px to 30px */
+    text-align: center;
+    color: #FFD700;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 20px;
+    border: 3px solid #B8860B;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+/* Corner Barbarian Image - Appears on both login.html and register.html */
+.form-container::after {
+    content: '';
+    position: absolute;
+    top: -25px; /* Adjusted from -30px */
+    right: -25px; /* Adjusted from -30px */
+    width: 70px; /* Reduced from 80px */
+    height: 70px; /* Reduced from 80px */
+    background: url('../images/barbarian.png') no-repeat center center/contain;
+    transform: rotate(10deg);
+}
+
+/* Main Heading (LOG IN / REGISTER) - Appears on both forms */
+.form-container h2 {
+    margin-bottom: 20px; /* Reduced from 25px */
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: #FFD700;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Form Layout Container - Controls alignment in both login.html and register.html */
+.form-container form {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Changed from flex-start to center */
+    padding: 0;
+}
+
+/* Text Field Container - Controls spacing and width of input fields
+   Affects:
+   - Username/Password fields in login.html
+   - All fields (Full Name, Email, Username, Password, Confirm) in register.html */
+.form-field {
+    position: relative;
+    margin: 12px 0; /* Reduced from 20px to 12px */
+    width: 85%; /* Adjusted width */
+    margin-left: -30px; /* Removed left margin */
+}
+
+/* Text Field Styling - Styles all input boxes in both forms */
+.form-container input {
+    width: 100%;
+    padding: 12px 15px; /* Adjusted padding */
+    margin: 0;  /* Remove auto margin */
+    border: 2px solid #B8860B;
+    border-radius: 8px;
+    outline: none;
+    font-size: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #FFD700;
+    transition: all 0.3s ease;
+}
+
+/* Floating Label - The text that floats above input fields when typing
+   Affects all labels in both login.html and register.html */
+.form-field label {
+    position: absolute;
+    left: 12px; /* Adjusted from 15px */
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    color: #DAA520;
+    padding: 0 5px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* Label Animation - Controls label movement in both forms when field is active */
+.form-container input:focus ~ label,
+.form-container input:not(:placeholder-shown) ~ label {
+    top: -12px;
+    left: 10px;
+    font-size: 12px;
+    background: #000;
+    color: #FFD700;
+    padding: 0 5px;
+    border-radius: 4px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Click animation with Clash of Clans style */
+.form-container input:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4),
+                0 0 30px rgba(255, 215, 0, 0.2);
+    border-color: #FFD700;
+}
+
+/* Add placeholder but make it transparent */
+.form-container input::placeholder {
+    color: transparent;
+}
+
+/* Button Base Styling - Basic button styles for both forms */
+.form-container button {
+    padding: 12px 40px;
+    margin: 20px 0 0; /* Adjusted top margin */
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #FFD700, #B8860B);
+    color: #000;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+    font-family: 'Supercell-Magic', 'Arial Black', sans-serif;
+}
+
+/* Form-Specific Button Styling - Controls width and margins of Submit buttons
+   Affects:
+   - Login button in login.html
+   - Register button in register.html */
+.form-container form button {
+    width: 85%; /* Match text field width */
+    min-width: 120px;
+    margin: 15px 0 0; /* Reduced from 20px to 15px */
+}
+
+/* Button hover - Keep existing hover effects */
+.form-container button:hover {
+    background: linear-gradient(145deg, #B8860B, #FFD700);
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+/* Link Text Styling - Styles the bottom text in both forms
+   Affects:
+   - "Forgot password" and "Register" links in login.html
+   - "Already have an account" link in register.html */
+.form-container p {
+    margin-top: 12px; /* Reduced from 20px to 12px */
+    font-size: 14px;
+    color: #DAA520;
+}
+
+/* Link Styling - Styles clickable links in both forms */
+.form-container a {
+    color: #FFD700;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.form-container a:hover {
+    color: #FFA500;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        width: 320px; /* Adjusted for smaller screens */
+        padding: 30px 20px;
+    }
+    .form-container h2 {
+        font-size: 1.5rem;
+    }
+}
+
+
+@media (max-width: 580px) {
+    .form-container {
+        max-width: 95%;
+        padding: 20px;
+    }
+    .form-container h2 {
+        font-size: 1.3rem;
+    }
+    .form-container input,
+    .form-container button {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+}

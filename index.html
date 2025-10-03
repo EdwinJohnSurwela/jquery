@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="css/design.css">
+    <style>
+        /* jQuery Validation Error Styling */
+        .error {
+            color: #FF4444;
+            font-size: 12px;
+            margin-top: 5px;
+            display: block;
+            text-align: left;
+            padding-left: 15px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+        
+        .form-field input.error {
+            border-color: #FF4444;
+        }
+        
+        .success-message {
+            color: #00FF00;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Log In</h2>
+        <form id="loginForm">
+            <div class="form-field">
+                <input type="text" id="username" name="username" required>
+                <label for="username">Username</label>
+            </div>
+            <div class="form-field">
+                <input type="password" id="password" name="password" required>
+                <label for="password">Password</label>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <p>Forgot your password? <a href="#">Reset here</a></p>
+        <p>Don't have an account? <a href="register.html">Register</a></p>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- jQuery Validation Plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Static credentials
+            const VALID_USERNAME = "admin";
+            const VALID_PASSWORD = "12345";
+            
+            // Initialize jQuery Validation
+            $("#loginForm").validate({
+                rules: {
+                    username: {
+                        required: true,
+                        minlength: 3
+                    },
+                    password: {
+                        required: true,
+                        minlength: 5
+                    }
+                },
+                messages: {
+                    username: {
+                        required: "Please enter your username",
+                        minlength: "Username must be at least 3 characters"
+                    },
+                    password: {
+                        required: "Please enter your password",
+                        minlength: "Password must be at least 5 characters"
+                    }
+                },
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('error');
+                    error.insertAfter(element.parent());
+                },
+                highlight: function(element) {
+                    $(element).addClass('error');
+                },
+                unhighlight: function(element) {
+                    $(element).removeClass('error');
+                },
+                submitHandler: function(form) {
+                    // Get form values
+                    const username = $('#username').val();
+                    const password = $('#password').val();
+                    
+                    // Validate credentials
+                    if (username === VALID_USERNAME && password === VALID_PASSWORD) {
+                        // Store username in sessionStorage
+                        sessionStorage.setItem('loggedInUser', username);
+                        
+                        // Show success message
+                        $('<div class="success-message">Login successful! Redirecting...</div>')
+                            .insertAfter('#loginForm');
+                        
+                        // Redirect to landing page after short delay
+                        setTimeout(function() {
+                            window.location.href = 'home.html';
+                        }, 1000);
+                    } else {
+                        // Show error message
+                        alert('Invalid username or password!\n\nHint: username: admin, password: 12345');
+                    }
+                    
+                    return false; // Prevent default form submission
+                }
+            });
+        });
+    </script>
+</body>
+</html>
